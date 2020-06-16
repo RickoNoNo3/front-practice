@@ -48,6 +48,8 @@ function delCookie(name) {
 
 
 // -----------------------------
-if (getCookie("username") === null) {
-	window.location.href = "login.html";
+function checkLogin() {
+	if (getCookie("username") === null) {
+		window.location.href = "login.html";
+	}
 }
