@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+	<title>ArticleList</title>
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/materialize.min.js"></script>
+	<script src="js/util.js"></script>
+	<link rel="stylesheet" href="css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<style>
+		#Title {
+			position: relative;
+			display: block;
+			height: 40px;
+			text-align: center;
+			box-shadow: 0 0 3px grey;
+		}
+		#Title, #Title * {
+			font-size: 20px;
+			line-height: 40px;
+		}
+		#Menu {
+			min-width: 250px;
+			box-shadow: 0 0 3px grey;
+		}
+		#Menu2 {
+			top: 0;
+			bottom: 0;
+			position: fixed;
+			width: 200px;
+			background-color:  white;
+			z-index: 999; 
+		}
+		#Content {
+			flex: auto;
+			padding: 5px;
+		}
+		#Pagination {
+			margin: 0;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+		}
+		#Pagination>li>a {
+			color: white;
+		}
+		#Pagination, #Pagination * {
+			font-size: 20px;
+		}
+		.my-art-card {
+			margin: 10px 0px;
+		}
+		.my-title {
+			font-size: 20px;
+			color: #000;
+		}
+		.my-modified-time {
+			font-size: 14px;
+			color: #333;
+		}
+	</style>
+</head>
+<body>
+	<div id="CardTemp" style="display: none;">
+		<div class="col s12 m4">
+			<div class="my-art-card card white">
+				<div class="blue-grey" style="height: 5px;"></div>
+				<div class="card-content black-text">
+					<span class="my-title">卡片标题</span>
+					<div class="my-modified-time">2020/5/12 15:23</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="display: flex; flex-direction: column; height: 100vh;">
+		<div id="Title" class="blue-grey white-text">
+			<a id="MenuBtn" href="#!" data-activates="Menu2" class="hide-on-med-and-up white-text" style="position: absolute; left: 10px;"><i class="material-icons">menu</i></a>
+			豆豆的作业
+		</div>
+		<div style="display: flex; flex: auto;">
+			<div id="Menu2"></div>
+			<div id="Menu" class="hide-on-small-only">
+				<ul class="collapsible" data-collapsible="accordion" style="box-shadow: none; margin: 0;">
+					<li>
+						<div class="collapsible-header"><i class="material-icons">filter_drama</i>一</div>
+						<div class="collapsible-body">
+							<ul class="collection">
+								<li class="collection-item">白菜</li>
+								<li class="collection-item">青菜</li>
+								<li class="collection-item">萝卜</li>
+								<li class="collection-item">土豆</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">place</i>二</div>
+						<div class="collapsible-body"><p>人的一生，其实就是一场自己对自己的战争。</p></div>
+					</li>
+					<li>
+						<div class="collapsible-header"><i class="material-icons">whatshot</i>三</div>
+						<div class="collapsible-body"><p>人的一生，其实就是一场自己对自己的战争。</p></div>
+					</li>
+				</ul>
+			</div>
+			<div style="display: flex; flex-direction: column; flex: auto;">
+				<div id="Content" class="row">
+				</div>
+				<ul id="Pagination" class="pagination blue-grey">
+					<li><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+					<li><a href="#!">1</a></li>
+					<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script>
+		var cardTemp = $('#CardTemp')[0];
+		
+		window.onload = () => {
+			for (let i = 0; i < 10; ++i) {
+				Content.innerHTML += cardTemp.innerHTML;
+			}
+			$('#Menu2')[0].innerHTML = $('#Menu')[0].innerHTML;
+			$('.dropdown-button').dropdown({
+				inDuration: 300,
+				outDuration: 225,
+				constrain_width: false, // Does not change width of dropdown to that of the activator
+				hover: true, // Activate on hover
+				gutter: 0, // Spacing from edge
+				belowOrigin: false, // Displays dropdown below the button
+				alignment: 'left' // Displays dropdown with edge aligned to the left of button
+			}
+			);
+			$("#MenuBtn").sideNav();	
+		}
+	</script>
+</body>
+</html>
+
