@@ -10,12 +10,16 @@
 	<link rel="stylesheet" href="css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<style>
+		html, body {
+			max-height: 100vh;
+		}
 		#Title {
 			position: relative;
 			display: block;
 			height: 40px;
 			text-align: center;
 			box-shadow: 0 0 3px grey;
+			z-index: 998;
 		}
 		#Title, #Title * {
 			font-size: 20px;
@@ -32,10 +36,17 @@
 			width: 200px;
 			background-color:  white;
 			z-index: 999; 
+			display: none;
+		}
+		#Menu, #Menu2 {
+			overflow: auto;
 		}
 		#Content {
 			flex: auto;
+			margin: 0;
 			padding: 5px;
+			max-height: calc(100vh - 80px);
+			overflow: auto;
 		}
 		#Pagination {
 			margin: 0;
@@ -74,7 +85,7 @@
 			</div>
 		</div>
 	</div>
-	<div style="display: flex; flex-direction: column; height: 100vh;">
+	<div style="display: flex; flex-direction: column; height: 100vh; max-height: 100vh;">
 		<div id="Title" class="blue-grey white-text">
 			<a id="MenuBtn" href="#!" data-activates="Menu2" class="hide-on-med-and-up white-text" style="position: absolute; left: 10px;"><i class="material-icons">menu</i></a>
 			豆豆的作业
@@ -123,17 +134,19 @@
 				Content.innerHTML += cardTemp.innerHTML;
 			}
 			$('#Menu2')[0].innerHTML = $('#Menu')[0].innerHTML;
-			$('.dropdown-button').dropdown({
-				inDuration: 300,
-				outDuration: 225,
-				constrain_width: false, // Does not change width of dropdown to that of the activator
-				hover: true, // Activate on hover
-				gutter: 0, // Spacing from edge
-				belowOrigin: false, // Displays dropdown below the button
-				alignment: 'left' // Displays dropdown with edge aligned to the left of button
-			}
-			);
-			$("#MenuBtn").sideNav();	
+			setTimeout(() => {
+				$('.dropdown-button').dropdown({
+					inDuration: 300,
+					outDuration: 225,
+					constrain_width: false, // Does not change width of dropdown to that of the activator
+					hover: true, // Activate on hover
+					gutter: 0, // Spacing from edge
+					belowOrigin: false, // Displays dropdown below the button
+					alignment: 'left' // Displays dropdown with edge aligned to the left of button
+				});
+				$("#MenuBtn").sideNav();	
+				$('#Menu2')[0].style.display = "unset";
+			}, 500);
 		}
 	</script>
 </body>
